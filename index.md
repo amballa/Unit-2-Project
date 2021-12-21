@@ -1,7 +1,7 @@
 ---
 title: 
 ---
-![image](https://user-images.githubusercontent.com/92558174/142338159-5916511c-a2ef-414b-89ae-93ef7422102a.png) _Forbidden Planet (1956)_
+![image](https://user-images.githubusercontent.com/92558174/146865584-7766427a-0d27-4c5a-893c-ac19b1874768.png)
 
 ### Background
 ....
@@ -70,11 +70,11 @@ blah blah blah
 (whatever)
 
 
-#### Header
+### Header
 
-#### Header
+### Header
 
 
 
-## Concluding Thoughts and Analysis Limitations
+### Concluding Thoughts and Analysis Limitations
 
