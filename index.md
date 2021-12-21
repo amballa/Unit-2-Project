@@ -1,5 +1,5 @@
 ---
-title: 
+title: Predicting the NBA Draft
 ---
 ![image](https://user-images.githubusercontent.com/92558174/146867019-88381d28-9055-49bb-9345-4b0994e10052.png)
 
@@ -8,11 +8,6 @@ title:
 
 
 ### Dataset
-....
-    
-
-
-### 
 ....
 
 
