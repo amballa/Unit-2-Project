@@ -45,12 +45,15 @@ _Point guard Ja Morant, drafted 2nd overall by the Memphis Grizzlies in 2019_
 (image here)
 
 
-### Header
+### Logistic Regression Classification
 
+```
+(some code maybe)
+```
 (some graphs maybe)
 
 
-### Header
+### Tree Model Classification
 ```
 (some code maybe)
 ```
@@ -58,14 +61,20 @@ _Point guard Ja Morant, drafted 2nd overall by the Memphis Grizzlies in 2019_
 
 blah blah blah
 
-### Another Header
+### Boosted Tree Model Classification
+
+```
+(some code maybe)
+```
+
+### Initial Model Comparison
 
 (whatever)
 
 
-### Header
+### Hyperparameter Tuning and Final Model Comparison
 
-### Header
+### Final Prediction
 
 
 
