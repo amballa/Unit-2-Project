@@ -1,8 +1,8 @@
 ![image](https://user-images.githubusercontent.com/92558174/146867019-88381d28-9055-49bb-9345-4b0994e10052.png)
-_Point guard Ja Morant, drafted 2nd overall by the Memphis Grizzlies in 2019_
+_NBA commissioner Adam Silver congratulating point guard Ja Morant, drafted 2nd overall by the Memphis Grizzlies in 2019_
 
 ## Background
-The NBA is amongst the most popular and premier sports leagues in the world. The league truly represents the best of the best in the world of basketball. But before getting a chance to play on the biggest stage in basketball, prospective players must prove themselves on a smaller stage - whether in the minor leagues, internationally, or more commonly on colleges courts across the US.
+The NBA is amongst the most popular and premier sports leagues in the world. Attracting millions of viewers and generating billions in annual revenue, the league truly represents the best of the best in the world of basketball.  But before getting a chance to play on the biggest stage in basketball, prospective players must prove themselves on a smaller stage - whether in the American minor league, internationally, or most often on the college court. Every year, 60 individuals are chosen to join the ranks of the NBA, approximately 50 drafted directly from college. This selection comes from a pool of over 4,500 Division 1 player across 350 teams. 
 
 Using the performance statistics of college basketball players, my goal is to predict which althletes will be drafted by NBA teams in a given year.
 
@@ -11,7 +11,7 @@ Using the performance statistics of college basketball players, my goal is to pr
 
 [College Basketball + NBA Advanced Stats](https://www.kaggle.com/adityak2003/college-basketball-players-20092021)
 
-Of the 65 columns in the dataset, I chose to make use of 25 and engineered one additional feature.
+Of the 65 columns in the dataset, I chose to make use of 25 and engineered one additional feature: conf_mjr which rates the competitiveness of the conference an indvidual plays in as either high, mid, or low. 
 
 ##### Categorical features:
 > **conf**: Conference
@@ -207,7 +207,8 @@ blah blah blah
 
 ![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png)
 
-![image](https://user-images.githubusercontent.com/92558174/147176928-28e82f95-4246-43c5-9ac7-a0cbc4870505.png)
+![image](https://user-images.githubusercontent.com/92558174/147194006-08c0f22f-c158-4bfb-8b41-2224c28e122c.png)
+
 
 
 ### Hyperparameter Tuning and Final Model Comparison
@@ -300,9 +301,12 @@ To my surprise, the two models "cared" about very different features!
 
 ## Concluding Thoughts
 My approach is very basic.
-Some potential improvements:
-* finding the right combination of player stats to include
+Some potential improvements could be made by:
+* finding the right combination of stats
 * handling 0s and 1s for percentage features better or dropping those observations altogether
+* adding a feature to distinguish draft-eligible players 
+* adding a feature to distinguish players who have actually declared for the draft
 * adding or calculating a composite score feature
 * ulitizing an undersamping or oversampling technique like SMOTE
-* 
+
+It would also be interesting to see how well a more complex model could predict not only which players will drafted, but the order in which they are chosen.
