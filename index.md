@@ -2,9 +2,7 @@
 _NBA commissioner Adam Silver congratulating point guard Ja Morant, drafted 2nd overall in 2019_
 
 ## Background
-The NBA is amongst the most popular and premier sports leagues in the world. Attracting millions of viewers and generating billions in annual revenue, the league truly represents the best of the best in the world of basketball. But the route to the NBA is difficult to say the least. Before getting a chance to play on the biggest stage in basketball, prospective players must prove themselves on smaller stages - whether in the American minor league, internationally, or most often on college courts. Every year, 60 individuals are chosen to join the ranks of the pros in the annual NBA draft. Around 50 or so are drafted directly from college. This selection comes from a pool of over 4,500 Division 1 players across 350 teams. That's a rate of 1.1%! Who are these select few and why are they chosen?
-
-Using on-court stats, my goal is to predict which NCAA players will be drafted by NBA teams in a given year and find the stats that best predict draft success.
+The NBA is amongst the most popular and premier sports leagues in the world. Attracting millions of viewers and generating billions in annual revenue, the league truly represents the best of the best in the world of basketball. But the route to the NBA is difficult to say the least. Before getting a chance to play on the biggest stage in basketball, prospective players must prove themselves on smaller stages - whether in the American minor league, internationally, or most often on college courts. Every year, 60 individuals are chosen to join the ranks of the pros in the annual NBA draft. Around 50 or so are drafted directly from college. This selection comes from a pool of over 4,500 Division 1 players across 350 teams. That's a rate of 1.1%! Part of the spectacle of the draft is that picks are only made public in a televised event at the end of July. Using on-court stats, my goal is to predict which NCAA players will be drafted by NBA teams in a given year and determine which stats best predict draft success.
 
 ## Dataset
 
@@ -69,7 +67,7 @@ The [College Basketball + NBA Advanced Stats](https://www.kaggle.com/adityak2003
 
 ## Preparation for Model Building
 ### Cleaning and Wrangling
-Although the dataset was well organized and contained relatively few null values, it required some basic wrangling to reduce the size and deal with missing data and outlier observations. I decided on retaining data from the 2015-2016 season through the 2020-2021 season and removed the columns of all the stats I was not interested in. Given the cardinality of the _team_ feature (362), I decided to drop that column as well. To make things interesting, I also created an additional feature - _conf_mjr_ which rates the competitiveness of the conference an indvidual plays in as either high, mid, or low. For the target, I used the _pick_ feature to created a binary column representing draft status. The full wrangle function is included below for reference.
+Although the dataset was well organized and contained relatively few null values, it required some basic wrangling to reduce the size and deal with missing data and outlier observations. I decided on retaining data from the 2015-2016 season through the 2020-2021 season and removed the columns of all the stats I was not interested in. Given the cardinality of the _team_ feature (362), I decided to drop that column as well. To make things interesting, I also created an additional feature - _conf_mjr_ which rates the competitiveness (also called major) of each conference as high, mid, or low. For the target, I used the _pick_ feature to created a binary column representing draft status. The full wrangle function is included below for reference.
 
 ```
 def wrangle(filepath):
@@ -134,8 +132,11 @@ def wrangle(filepath):
   return df
 ```
 
-### Train-Validation-Test Split
-
+### Splitting the Data
+I decided to split my data into the following 3 subsets:
+1. training set containing stats from 4 seasons (2016-2019)
+2. validation set containing stats from 2020 season
+3. test set containing stats from 2021 season
 
 ```
 cutoff = 2020
@@ -143,9 +144,7 @@ df_train = df[df['year'] < cutoff]
 df_val = df[df['year'] == cutoff]
 df_test = df[df['year'] > cutoff]
 ```
-
-### Feature Matrix and Target Array
-
+Creating the feature matrices and target vectors:
 ```
 X_train = df_train.drop(columns = [target, 'year'])
 y_train = df_train[target]
@@ -158,11 +157,12 @@ y_test = df_test[target]
 ```
 
 ### Baseline
-
+To establish a baseline, I calculated the relative frequency of the majority class for both the training and validation set. 
 ```
 baseline_train_acc = y_train.value_counts(normalize=True).max()*100
 baseline_val_acc = y_val.value_counts(normalize=True).max()*100
 ```
+Unsurprsingly, predicting that zero players get drafted nets an accuracy score of 98.91 for the training set and 98.92 validation set. Even though accuracy will not be the primary metric of evaluation, it will be interesting to see how different model perform in this respect. 
 
 ## Classification Models
 ### Logistic Regression
