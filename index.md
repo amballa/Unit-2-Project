@@ -2,7 +2,7 @@
 _Point guard Ja Morant, drafted 2nd overall by the Memphis Grizzlies in 2019_
 
 ### Background
-The NBA is amongst the most popular and premier sports leagues in the world. The league truly represents the best of the best in the world of basketball. But before getting a chance to play on the biggest stage in basketball, prospective players must prove themselves on a smaller stage - whether in the minor leagues, internationally, or more commonly in colleges across the country. 
+The NBA is amongst the most popular and premier sports leagues in the world. The league truly represents the best of the best in the world of basketball. But before getting a chance to play on the biggest stage in basketball, prospective players must prove themselves on a smaller stage - whether in the minor leagues, internationally, or more commonly on colleges courts across the US.
 
 Using the performance statistics of college basketball players, my goal is to predict which althletes will be drafted by NBA teams in a given year.
 
@@ -286,8 +286,11 @@ Seeing that the logistic regression model did not perfrom all that well on the t
 
 |![image](https://user-images.githubusercontent.com/92558174/147178013-2e0960b7-1a08-43a6-9e63-d4955066f342.png) | ![image](https://user-images.githubusercontent.com/92558174/147176443-a181952f-89e1-4ddd-b94b-c1ecebf5e3be.png)|
 
-### Permutation Importances for Final Model
+### Important Features
+Permutation importances for the tuned LR model:
+![image](https://user-images.githubusercontent.com/92558174/147185241-007b2268-8574-439d-ac39-39edd4199617.png)
 
+Permutation importances for the tuned XGBoost model:
 ![image](https://user-images.githubusercontent.com/92558174/147177421-a5b66a2a-8cd4-4337-9756-b9c2c079b40c.png)
 
 
