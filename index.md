@@ -1,19 +1,19 @@
 ![image](https://user-images.githubusercontent.com/92558174/146867019-88381d28-9055-49bb-9345-4b0994e10052.png)
 _Point guard Ja Morant, drafted 2nd overall by the Memphis Grizzlies in 2019_
 
-### Background
+## Background
 The NBA is amongst the most popular and premier sports leagues in the world. The league truly represents the best of the best in the world of basketball. But before getting a chance to play on the biggest stage in basketball, prospective players must prove themselves on a smaller stage - whether in the minor leagues, internationally, or more commonly on colleges courts across the US.
 
 Using the performance statistics of college basketball players, my goal is to predict which althletes will be drafted by NBA teams in a given year.
 
 
-### Dataset
+## Dataset
 
 [College Basketball + NBA Advanced Stats](https://www.kaggle.com/adityak2003/college-basketball-players-20092021)
 
 Of the 65 columns in the dataset, I chose to make use of 25 and engineered one additional feature.
 
-																					
+#### Categorical features:
 > **conf**: Conference
 > 
 > **conf_mjr**: Conference tier
@@ -22,6 +22,8 @@ Of the 65 columns in the dataset, I chose to make use of 25 and engineered one a
 > 
 > **yr**: Year of college
 > 
+
+#### Numeric features:
 > **GP**: Games played
 > 
 > **Min_per**: Minutes %
@@ -30,7 +32,7 @@ Of the 65 columns in the dataset, I chose to make use of 25 and engineered one a
 > 
 > **drtg**: Defensive rating
 > 
-> **usg**: Usage
+> **usg**: Usage rate
 > 
 > **eFG**: Effective field goal %
 > 
@@ -68,7 +70,8 @@ Of the 65 columns in the dataset, I chose to make use of 25 and engineered one a
 
 
 
-### Cleaning and Wrangling Preparation
+## Preparation for Model Building
+### Cleaning and Wrangling
 Here is my wrangle function:
 
 ```
@@ -138,8 +141,8 @@ def wrangle(filepath):
 
 
 
-### Train-Val-Test Split
-blah blah blah 
+### Train-Validation-Test Split
+
 
 ```
 cutoff = 2020
@@ -168,8 +171,8 @@ baseline_train_acc = y_train.value_counts(normalize=True).max()*100
 baseline_val_acc = y_val.value_counts(normalize=True).max()*100
 ```
 
-
-### Logistic Regression Classification
+## Classification Models
+### Logistic Regression
 
 ```
 model_log = make_pipeline(OneHotEncoder(use_cat_names = True),
@@ -181,7 +184,7 @@ model_log.fit(X_train, y_train)
 (some graphs maybe)
 
 
-### Tree Model Classification
+### Tree Models
 ```
 model_ada = make_pipeline(OrdinalEncoder(),
                           AdaBoostClassifier(random_state=42)
@@ -277,7 +280,7 @@ model_xgb_s.fit(X_train, y_train)
 ![image](https://user-images.githubusercontent.com/92558174/147180713-d02659a5-5ebf-42cc-8252-80c1cb8f1728.png)
 
 
-### Final Prediction for 2021 Draft
+### Final Predictions for 2021 Draft
 
 |![image](https://user-images.githubusercontent.com/92558174/147177924-f74402e5-da06-448d-84e6-b1b08dd7ac0b.png) | ![image](https://user-images.githubusercontent.com/92558174/147183927-ca56f4a2-7d88-454f-8a3b-50039b2248f4.png)|
 
@@ -293,6 +296,7 @@ Permutation importances for the tuned LR model:
 Permutation importances for the tuned XGBoost model:
 ![image](https://user-images.githubusercontent.com/92558174/147177421-a5b66a2a-8cd4-4337-9756-b9c2c079b40c.png)
 
+To my surprise, the two models "cared" about very different features!
 
 ### Concluding Thoughts
 My approach is very basic.
