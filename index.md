@@ -162,7 +162,7 @@ To establish a baseline, I calculated the relative frequency of the majority cla
 baseline_train_acc = y_train.value_counts(normalize=True).max()*100
 baseline_val_acc = y_val.value_counts(normalize=True).max()*100
 ```
-Unsurprsingly, predicting that zero players get drafted nets an accuracy score of 98.91% for the training set and 98.92% for the validation set. Even though accuracy will not be the primary metric of evaluation, it will be interesting to see how different model perform in this respect. Since the classes are so imbalanced and my focus is on classifications of the positive class, precision & recall & F1 score will be more useful.
+Unsurprsingly, predicting that zero players get drafted nets an accuracy score of 98.91% for the training set and 98.92% for the validation set. Even though accuracy will not be the primary metric of evaluation, it will be interesting to see how different model perform in this respect. Since the classes are so imbalanced and my focus is on classifications of the positive class, precision/recall and particularly the F1 metric will be crucial.
 
 
 
@@ -193,12 +193,14 @@ model_xgb = make_pipeline(OrdinalEncoder(),
                           )
 model_xgb.fit(X_train, y_train);
 ```
-I trained 5 tree-based models, also with default parameters to see how they would perfrom with the severe class imbalance. The decision tree
+I trained 5 tree-based models (with default parameters) to see how they would handle the severe class imbalance. The random forest model fared the worst with an meager F1 score of 0.19 - a combination of perfect precision but terrible recall . Despite having a validation accuracy below baseline, the decision tree model did a better job (F1 = 0.40) and "took more chances" at predicting a positive draft status.
 
 
 
 ### Initial Model Comparison
 To decide which model to go with, ...
+
+Below are 
 
 ![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png)
 
@@ -228,6 +230,7 @@ model_log_s = GridSearchCV(model_log,
 model_log_s.fit(X_train, y_train)
 ```
 
+
 ```
 model_ada = make_pipeline(OrdinalEncoder(),
                           AdaBoostClassifier(base_estimator=DecisionTreeClassifier(), random_state=42)
@@ -246,6 +249,7 @@ model_ada_s = GridSearchCV(model_ada,
                             )
 model_ada_s.fit(X_train, y_train)
 ```
+
 
 ```
 model_xgb = make_pipeline(OrdinalEncoder(),
@@ -266,6 +270,7 @@ model_xgb_s = GridSearchCV(model_xgb,
 model_xgb_s.fit(X_train, y_train)
 ```
 
+
 | Tuned Model         | Accuracy  | ROC AUC  | Precision | Recall | F1 Score |
 |:--------------------|:----------|----------|:----------|:-------|:---------|
 | Logistic Regression | 99.358974 | 0.996393 | 0.83      | 0.51   | **0.63** |
@@ -273,10 +278,11 @@ model_xgb_s.fit(X_train, y_train)
 | XGBoost             | 99.005305 | 0.993492 | 0.53      | 0.71   | **0.61** |
 
 
+
 ![image](https://user-images.githubusercontent.com/92558174/147180713-d02659a5-5ebf-42cc-8252-80c1cb8f1728.png)
 
 
-### Final Predictions for 2021 Draft
+## Final Prediction
 
 |![image](https://user-images.githubusercontent.com/92558174/147177924-f74402e5-da06-448d-84e6-b1b08dd7ac0b.png) | ![image](https://user-images.githubusercontent.com/92558174/147183927-ca56f4a2-7d88-454f-8a3b-50039b2248f4.png)|
 
@@ -295,7 +301,8 @@ Permutation importances for the tuned XGBoost model:
 To my surprise, the two models "cared" about very different features!
 
 ## Concluding Thoughts
-My approach is very basic.
+My approach is very basic. There are other factors beyonds stats that go into draft decisions. One such factor is the kind of player a team is looking to add to its roster in any given year. Another may be personality.
+
 Some potential improvements could be made by:
 * finding the right combination of stats
 * handling 0s and 1s for percentage features better or dropping those observations altogether
