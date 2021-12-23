@@ -9,7 +9,63 @@ Using the performance statistics of college basketball players, my goal is to pr
 
 ### Dataset
 
-Of the 65 columns in the dataset, I chose to make use of 26 in training the predictive model.
+[College Basketball + NBA Advanced Stats](https://www.kaggle.com/adityak2003/college-basketball-players-20092021)
+
+Of the 65 columns in the dataset, I chose to make use of 25 and engineered one additional feature.
+
+																					
+> **conf**:
+> 
+> **conf_mjr**:
+> 
+> **pos**: Position
+> 
+> **yr**: Year of college
+> 
+> **GP**: Games played
+> 
+> **Min_per**: Minutes %
+> 
+> **Ortg**: Offensive rating
+> 
+> **drtg**: Defensive rating
+> 
+> **usg**: Usage
+> 
+> **eFG**: Effective field goal %
+> 
+> **TS_per**: True shooting %
+> 
+> **FT_per**: Free throw %
+> 
+> **twoP_per**: 2-pointer %
+> 
+> **TP_per**: 3-pointer %
+> 
+> **ftr**: Free throw rate
+> 
+> **TO_per**: Turnover %
+> 
+> **ORB_per**: Offensive rebound %
+> 
+> **treb**: Average rebounds
+> 
+> **dunks**: Dunks made
+> 
+> **stops**: Stops made
+> 
+> **bpm**: Box plus/minus
+> 
+> **mp**: Average minutes played
+> 
+> **ast**: Average assists
+> 
+> **stl**: Average steals
+> 
+> **blk**: Average blocks
+> 
+> **pts**: Average points
+
 
 
 ### Cleaning and Wrangling Preparation
@@ -28,12 +84,9 @@ def wrangle(filepath):
               'midmade/(midmade+midmiss)', 'dunksmiss+dunksmade', 
               'dunksmade/(dunksmade+dunksmiss)', 'dporpag', 'obpm', 
               'dbpm', 'gbpm', 'ogbpm', 'dgbpm', 'oreb', 'dreb', 'Unnamed: 65']
-  #col_drop.append(['eFG', 'TS_per'])
   df.drop(columns=col_drop, inplace=True)
-  #df.columns = []
   
   df.rename(columns = {'Unnamed: 64': 'pos', 'dunksmade': 'dunks'}, inplace=True)
-  #df.drop(columns = ['pos'], inplace=True)
 
   # Imputing NaN values
   df['dunks'].fillna(0, inplace=True)
@@ -97,7 +150,6 @@ blah blah blah
 
 ```
 cutoff = 2020
-
 df_train = df[df['year'] < cutoff]
 df_val = df[df['year'] == cutoff]
 df_test = df[df['year'] > cutoff]
@@ -108,10 +160,8 @@ df_test = df[df['year'] > cutoff]
 ```
 X_train = df_train.drop(columns = [target, 'year'])
 y_train = df_train[target]
-
 X_val = df_val.drop(columns = [target, 'year'])
 y_val = df_val[target]
-
 X_test = df_test.drop(columns = [target, 'year'])
 y_test = df_test[target]
 ```
@@ -153,11 +203,6 @@ model_xgb.fit(X_train, y_train);
 
 blah blah blah
 
-### Boosted Tree Model Classification
-
-```
-(some code maybe)
-```
 
 ### Initial Model Comparison
 (whatever)
@@ -227,8 +272,12 @@ model_xgb_s = GridSearchCV(model_xgb,
 model_xgb_s.fit(X_train, y_train)
 ```
 
-### Final Prediction
+![image](https://user-images.githubusercontent.com/92558174/147172780-16c551d3-da13-4900-b065-19e668671a96.png)
+![image](https://user-images.githubusercontent.com/92558174/147172479-6c467e68-f1b0-4b9c-8354-aee9f33a9990.png)
 
+
+### Final Prediction
+![alt-text-1](image1.png "title-1") ![alt-text-2](image2.png "title-2")
 
 
 ### Concluding Thoughts and Analysis Limitations
