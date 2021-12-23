@@ -1,5 +1,5 @@
 ![image](https://user-images.githubusercontent.com/92558174/146867019-88381d28-9055-49bb-9345-4b0994e10052.png)
-_NBA commissioner Adam Silver congratulating point guard Ja Morant, drafted 2nd overall by the Memphis Grizzlies in 2019_
+_NBA commissioner Adam Silver congratulating point guard Ja Morant, drafted 2nd overall in 2019_
 
 ## Background
 The NBA is amongst the most popular and premier sports leagues in the world. Attracting millions of viewers and generating billions in annual revenue, the league truly represents the best of the best in the world of basketball.  But before getting a chance to play on the biggest stage in basketball, prospective players must prove themselves on a smaller stage - whether in the American minor league, internationally, or most often on the college court. Every year, 60 individuals are chosen to join the ranks of the NBA, approximately 50 drafted directly from college. This selection comes from a pool of over 4,500 Division 1 player across 350 teams. 
