@@ -2,14 +2,14 @@
 _NBA commissioner Adam Silver congratulating point guard Ja Morant, drafted 2nd overall in 2019_
 
 ## Background
-The NBA is amongst the most popular and premier sports leagues in the world. Attracting millions of viewers and generating billions in annual revenue, the league truly represents the best of the best in the world of basketball.  But before getting a chance to play on the biggest stage in basketball, prospective players must prove themselves on a smaller stage - whether in the American minor league, internationally, or most often on the college court. Every year, 60 individuals are chosen to join the ranks of the NBA, approximately 50 drafted directly from college. This selection comes from a pool of over 4,500 Division 1 player across 350 teams. 
+The NBA is amongst the most popular and premier sports leagues in the world. Attracting millions of viewers and generating billions in annual revenue, the league truly represents the best of the best in the world of basketball. But the route to the NBA is difficult to say the least. Before getting a chance to play on the biggest stage in basketball, prospective players must prove themselves on a smaller stage - whether in the American minor league, internationally, or most often on the college court. Every year, 60 individuals are chosen to join the ranks of the NBA in the annual draft. Around 50 or so are drafted directly from college. This selection comes from a pool of over 4,500 Division 1 players across 350 teams. That's a rate of 1.1%! Who are these select few and why are they chosen?
 
-Using the performance statistics of college basketball players, my goal is to predict which althletes will be drafted by NBA teams in a given year.
+Using the on-court stats of college basketball players, my goal is to predict which althletes will be drafted by NBA teams in that year's draft and find the stats that best predict draft success.
 
 
 ## Dataset
 
-[College Basketball + NBA Advanced Stats](https://www.kaggle.com/adityak2003/college-basketball-players-20092021)
+ [College Basketball + NBA Advanced Stats](https://www.kaggle.com/adityak2003/college-basketball-players-20092021)
 
 Of the 65 columns in the dataset, I chose to make use of 25 and engineered one additional feature: conf_mjr which rates the competitiveness of the conference an indvidual plays in as either high, mid, or low. 
 
