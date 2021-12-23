@@ -179,9 +179,9 @@ I trained 5 tree-based classification models, also with default parameters, to s
 
 ### Initial Model Comparison
 
-Out of the 6 models, I decided to compare the logistic regression, AdaBoost, and XGboost classifiers as candidates for the final model. From the ROC curves below
+Out of the 6 models, I decided to compare the logistic regression, AdaBoost, and XGboost classifiers as candidates for the final model. Even though the ROC curves shown below are extremely tight, any marginal difference in the AUC (area under curve) 
 
-![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png) ![image](https://user-images.githubusercontent.com/92558174/147284674-1f1f56e0-9f2b-4f4e-b5bf-1887edeab209.png)
+|![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png) | ![image](https://user-images.githubusercontent.com/92558174/147284674-1f1f56e0-9f2b-4f4e-b5bf-1887edeab209.png)|
 
 
 ![image](https://user-images.githubusercontent.com/92558174/147194006-08c0f22f-c158-4bfb-8b41-2224c28e122c.png)
