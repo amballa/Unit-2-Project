@@ -13,7 +13,7 @@ Using the performance statistics of college basketball players, my goal is to pr
 
 Of the 65 columns in the dataset, I chose to make use of 25 and engineered one additional feature.
 
-#### Categorical features:
+##### Categorical features:
 > **conf**: Conference
 > 
 > **conf_mjr**: Conference tier
@@ -23,7 +23,7 @@ Of the 65 columns in the dataset, I chose to make use of 25 and engineered one a
 > **yr**: Year of college
 > 
 
-#### Numeric features:
+##### Numeric features:
 > **GP**: Games played
 > 
 > **Min_per**: Minutes %
@@ -298,7 +298,7 @@ Permutation importances for the tuned XGBoost model:
 
 To my surprise, the two models "cared" about very different features!
 
-### Concluding Thoughts
+## Concluding Thoughts
 My approach is very basic.
 Some potential improvements:
 * finding the right combination of player stats to include
