@@ -268,7 +268,7 @@ Seeing that the logistic regression model did not perfrom all that well on the t
 
 |![image](https://user-images.githubusercontent.com/92558174/147178013-2e0960b7-1a08-43a6-9e63-d4955066f342.png) | ![image](https://user-images.githubusercontent.com/92558174/147176443-a181952f-89e1-4ddd-b94b-c1ecebf5e3be.png)|
 
-Looks like I chose the **wrong** model!
+Looks like I chose the wrong model!
 
 ### Important Features
 
