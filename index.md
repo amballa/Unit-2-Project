@@ -134,15 +134,8 @@ def wrangle(filepath):
   return df
 ```
 
-(image here)
+![image](https://user-images.githubusercontent.com/92558174/147181512-58fe80ce-be94-4c13-9357-6405275f05a2.png)
 
-
-
-```markdown
-(code here)
-```
-
-(image here)
 
 
 ### Train-Val-Test Split
@@ -274,7 +267,7 @@ model_xgb_s = GridSearchCV(model_xgb,
 model_xgb_s.fit(X_train, y_train)
 ```
 
-| Tuned Model         | Accuracy  | ROC AUC  | Precicion | Recall | F1 Score |
+| Tuned Model         | Accuracy  | ROC AUC  | Precision | Recall | F1 Score |
 |:--------------------|:----------|----------|:----------|:-------|:---------|
 | Logistic Regression | 99.358974 | 0.996393 | 0.83      | 0.51   | **0.63** |
 | Adaptive Boost      | 99.204244 | 0.981694 | 0.70      | 0.47   | **0.56** |
@@ -287,6 +280,7 @@ model_xgb_s.fit(X_train, y_train)
 ### Final Prediction for 2021 Draft
 ![image](https://user-images.githubusercontent.com/92558174/147177924-f74402e5-da06-448d-84e6-b1b08dd7ac0b.png) | ![image](https://user-images.githubusercontent.com/92558174/147178328-9ad4d39a-48a5-40cd-a8e8-6d3e427f80b9.png)
 
+Seeing that the logistic regression model did not perfrom all that well on the test set, I decided to test the updated XGBoost as well. Here are the results:
 ![image](https://user-images.githubusercontent.com/92558174/147178013-2e0960b7-1a08-43a6-9e63-d4955066f342.png) | ![image](https://user-images.githubusercontent.com/92558174/147176443-a181952f-89e1-4ddd-b94b-c1ecebf5e3be.png)
 
 ### Permutation Importances for Final Model
@@ -295,4 +289,10 @@ model_xgb_s.fit(X_train, y_train)
 
 
 ### Concluding Thoughts and Analysis Limitations
-
+My approach is very basic.
+Some potential improvements:
+* finding the right combination of player stats to include
+* handling 0s and 1s for percentage features better or dropping those observations altogether
+* adding or calculating a composite score feature
+* ulitizing an undersamping or oversampling technique like SMOTE
+* 
