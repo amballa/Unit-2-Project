@@ -183,7 +183,7 @@ Out of the 6 models, I decided to compare the logistic regression, AdaBoost, and
 
 
 ### Hyperparameter Tuning and Final Model Comparison
-
+To
 ```
 model_log = make_pipeline(OneHotEncoder(use_cat_names = True),
                           StandardScaler(),
@@ -258,10 +258,10 @@ Pre-tuning:
 Post-tuning:
 ![image](https://user-images.githubusercontent.com/92558174/147180713-d02659a5-5ebf-42cc-8252-80c1cb8f1728.png)
 
-From the metrics above, we can see that XGBoost classifier benefitted the most from tuning. 
+From the metrics above, we can see that XGBoost classifier benefitted the most from tuning. Both precision and recall increased substantially, giving an F1 score on pace with the logsitic regression model! The AdaBoost classifier 
 
 ## Final Prediction
-
+For my final model, I decided to go with the logistic regression. Below are the prediction results of the 2021 draft in a confusion matrix format.
 |![image](https://user-images.githubusercontent.com/92558174/147177924-f74402e5-da06-448d-84e6-b1b08dd7ac0b.png) | ![image](https://user-images.githubusercontent.com/92558174/147183927-ca56f4a2-7d88-454f-8a3b-50039b2248f4.png)|
 
 
