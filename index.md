@@ -21,12 +21,12 @@ def wrangle(filepath):
 
   df = df[df['year'] >= 2016].reset_index(drop=True)
 
-  col_drop = ['DRB_per', 'AST_per', 'FTM', 'FTA', 'twoPM', 'ast/tov', 'adrtg', \
-              'twoPA', 'TPM', 'TPA', 'blk_per', 'stl_per', 'num', 'ht',\
-              'porpag', 'adjoe', 'pfr', 'type', 'Rec Rank', 'rimmade', \
-              'rimmade+rimmiss', 'midmade', 'midmade+midmiss', 'rimmade/(rimmade+rimmiss)', \
-              'midmade/(midmade+midmiss)', 'dunksmiss+dunksmade', \
-              'dunksmade/(dunksmade+dunksmiss)', 'dporpag', 'obpm', \
+  col_drop = ['DRB_per', 'AST_per', 'FTM', 'FTA', 'twoPM', 'ast/tov', 'adrtg', 
+              'twoPA', 'TPM', 'TPA', 'blk_per', 'stl_per', 'num', 'ht', 'porpag',
+              'adjoe', 'pfr', 'type', 'Rec Rank', 'rimmade', 'midmade',
+              'rimmade+rimmiss', 'midmade+midmiss', 'rimmade/(rimmade+rimmiss)', 
+              'midmade/(midmade+midmiss)', 'dunksmiss+dunksmade', 
+              'dunksmade/(dunksmade+dunksmiss)', 'dporpag', 'obpm', 
               'dbpm', 'gbpm', 'ogbpm', 'dgbpm', 'oreb', 'dreb', 'Unnamed: 65']
   #col_drop.append(['eFG', 'TS_per'])
   df.drop(columns=col_drop, inplace=True)
@@ -83,24 +83,6 @@ def wrangle(filepath):
 
 (image here)
 
-```
-(code here)
-```
-
-
-```
-(code here
-```
-
-(image here)
-
-```
-(code here)
-```
-
-```markdown
-(code here)
-```
 
 
 ```markdown
@@ -108,19 +90,64 @@ def wrangle(filepath):
 ```
 
 (image here)
+
+
+### Train-Val-Test Split
+blah blah blah 
+
+```
+cutoff = 2020
+
+df_train = df[df['year'] < cutoff]
+df_val = df[df['year'] == cutoff]
+df_test = df[df['year'] > cutoff]
+```
+
+### Creating the Feature and Target Array
+
+```
+X_train = df_train.drop(columns = [target, 'year'])
+y_train = df_train[target]
+
+X_val = df_val.drop(columns = [target, 'year'])
+y_val = df_val[target]
+
+X_test = df_test.drop(columns = [target, 'year'])
+y_test = df_test[target]
+```
+
+### Baseline
+
+```
+baseline_train_acc = y_train.value_counts(normalize=True).max()*100
+baseline_val_acc = y_val.value_counts(normalize=True).max()*100
+```
 
 
 ### Logistic Regression Classification
 
 ```
-(some code maybe)
+model_log = make_pipeline(OneHotEncoder(use_cat_names = True),
+                          StandardScaler(),
+                          LogisticRegression(n_jobs=-1, random_state=42)
+                          )
+model_log.fit(X_train, y_train)
 ```
 (some graphs maybe)
 
 
 ### Tree Model Classification
 ```
-(some code maybe)
+model_ada = make_pipeline(OrdinalEncoder(),
+                          AdaBoostClassifier(random_state=42)
+                          )
+model_ada.fit(X_train, y_train);
+
+model_xgb = make_pipeline(OrdinalEncoder(),
+                          XGBClassifier(random_state=41, n_jobs=-1)
+                          )
+
+model_xgb.fit(X_train, y_train);
 ```
 (some image or graph maybe)
 
@@ -133,11 +160,72 @@ blah blah blah
 ```
 
 ### Initial Model Comparison
-
 (whatever)
+
+![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png)
+
+![image](https://user-images.githubusercontent.com/92558174/147169400-d2032ecb-51a7-437c-b49f-755fd802a635.png)
 
 
 ### Hyperparameter Tuning and Final Model Comparison
+
+```
+model_log = make_pipeline(OneHotEncoder(use_cat_names = True),
+                          StandardScaler(),
+                          LogisticRegression(n_jobs=-1, random_state = 42)
+                          )
+param_grid = {'logisticregression__max_iter': [100, 200, 300],
+              'logisticregression__solver': ['newton-cg', 'lbfgs', 'liblinear'],
+              'logisticregression__penalty': ['none', 'l1', 'l2', 'elasticnet'],
+              'logisticregression__C': [10, 1.0, 0.1]
+              }
+model_log_s = GridSearchCV(model_log,
+                          param_grid=param_grid,
+                          n_jobs=-1,
+                          cv=5,
+                          scoring='f1',
+                          verbose=1
+                          )
+model_log_s.fit(X_train, y_train)
+```
+
+```
+model_ada = make_pipeline(OrdinalEncoder(),
+                          AdaBoostClassifier(base_estimator=DecisionTreeClassifier(), random_state=42)
+                          )
+param_grid = {'adaboostclassifier__base_estimator__max_depth': [1,2],
+              'adaboostclassifier__learning_rate': [0.1, 0.5, 1],
+              'adaboostclassifier__n_estimators': [50,100,150]
+              }
+
+model_ada_s = GridSearchCV(model_ada,
+                           param_grid=param_grid,
+                           n_jobs=-1,
+                           cv=5,
+                           scoring='f1',
+                           verbose=1,
+                            )
+model_ada_s.fit(X_train, y_train)
+```
+
+```
+model_xgb = make_pipeline(OrdinalEncoder(),
+                          XGBClassifier(n_jobs=-1, random_state = 42)
+                          )
+param_grid = {'xgbclassifier__scale_pos_weight': [1, 10, 50, 99],
+              'xgbclassifier__learning_rate': [0.01, 0.1, 0.3],
+              'xgbclassifier__max_depth': [3,6,9],
+              'xgbclassifier__n_estimators': [50,100,150]
+              }
+model_xgb_s = GridSearchCV(model_xgb,
+                           param_grid=param_grid,
+                           n_jobs=-1,
+                           cv=5,
+                           scoring='f1',
+                           verbose=1
+                           )
+model_xgb_s.fit(X_train, y_train)
+```
 
 ### Final Prediction
 
