@@ -279,6 +279,8 @@ model_xgb_s.fit(X_train, y_train)
 
 ### Final Prediction for 2021 Draft
 |![image](https://user-images.githubusercontent.com/92558174/147177924-f74402e5-da06-448d-84e6-b1b08dd7ac0b.png) | ![image](https://user-images.githubusercontent.com/92558174/147183927-ca56f4a2-7d88-454f-8a3b-50039b2248f4.png)|
+
+
 Seeing that the logistic regression model did not perfrom all that well on the test set, I decided to test the updated XGBoost as well. Here are the results:
 
 |![image](https://user-images.githubusercontent.com/92558174/147178013-2e0960b7-1a08-43a6-9e63-d4955066f342.png) | ![image](https://user-images.githubusercontent.com/92558174/147176443-a181952f-89e1-4ddd-b94b-c1ecebf5e3be.png)|
