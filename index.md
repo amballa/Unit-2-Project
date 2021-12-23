@@ -166,7 +166,7 @@ Unsurprsingly, predicting that zero players get drafted nets an accuracy score o
 
 ## Classification Models
 ### Logistic Regression
-The first model I ran was a linear model - Logistic Regression with default parameters. Right off the bat, the bare-bone model had a validation accuracy of 99.40%, a whopping 0.48% above baseline. And with a precision of 0.84 and recall of 0.55 combining to give an F1 score of 0.67, these metrics were the ones to beat.
+The first model I ran was a linear model - logistic regression with default parameters. Right off the bat, the bare-bone model had a validation accuracy of 99.40%, a whopping 0.48% above baseline. And with a precision of 0.84 and recall of 0.55 combining to give an F1 score of 0.67, these metrics were the ones to beat. As shown in the confusion matrix below, the model correctly predicted 27 out of the 49 college draft picks in 2020 and only misclassified 5 players into the positive class. For such a simple model, that's not too bad!
 
 ![image](https://user-images.githubusercontent.com/92558174/147285600-571af60f-6bc1-4087-b4cc-67d6f04f8871.png)
 
@@ -174,15 +174,14 @@ The first model I ran was a linear model - Logistic Regression with default para
 
 
 ### Tree-based Models
-I trained 5 tree-based classification models (with default parameters) to see how they would handle the severe class imbalance: a basic decision tree, a bagging model (Random Forest), and 3 boosting models (Adaptive Boost, Gradient Boost, and Extreme Gradient Boost). The random forest model fared the worst with an meager F1 score of 0.19 - a combination of perfect precision and terrible recall scores. Despite having a validation accuracy below baseline, the decision tree did an overall better job (F1 of 0.40) and "took more chances" at predicting a positive draft status. The AdaBoostClassifier performed the best out of the lot with an F1 score of 0.60 and accuracy of 99.29%, well above baseline. The GradientBoostingClassifier and XGBoostClassifier perfomed similarly with respective F1 scores of 0.43 and 0.41.
+I trained 5 tree-based classification models, also with default parameters, to see how they would handle the severe class imbalance: a basic decision tree, a bagging model (Random Forest), and 3 boosting models (Adaptive Boost, Gradient Boost, and Extreme Gradient Boost). The random forest model fared the worst with an meager F1 score of 0.19 - a combination of perfect precision and terrible recall scores. Despite having a validation accuracy below baseline, the decision tree did an overall better job (F1 of 0.40) and "took more chances" at predicting a positive draft status. The AdaBoostClassifier performed the best out of the lot with an F1 score of 0.60 and accuracy of 99.29%, well above baseline. The GradientBoostingClassifier and XGBoostClassifier perfomed similarly with respective F1 scores of 0.43 and 0.41.
 
 
 ### Initial Model Comparison
 
-Out of the 6 models, I decided to compare the Logistic Regression, AdaBoost, and XGboost classifiers as candidates for the final model. 
+Out of the 6 models, I decided to compare the logistic regression, AdaBoost, and XGboost classifiers as candidates for the final model. From the ROC curves below
 
-![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png)
-![image](https://user-images.githubusercontent.com/92558174/147284674-1f1f56e0-9f2b-4f4e-b5bf-1887edeab209.png)
+![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png) ![image](https://user-images.githubusercontent.com/92558174/147284674-1f1f56e0-9f2b-4f4e-b5bf-1887edeab209.png)
 
 
 ![image](https://user-images.githubusercontent.com/92558174/147194006-08c0f22f-c158-4bfb-8b41-2224c28e122c.png)
@@ -258,7 +257,7 @@ model_xgb_s.fit(X_train, y_train)
 | Adaptive Boost      | 99.204244 | 0.981694 | 0.70      | 0.47   | **0.56** |
 | XGBoost             | 99.005305 | 0.993492 | 0.53      | 0.71   | **0.61** |
 
-
+From the metrics above, we can see that XGBoost classifier benefitted the most from tuning. 
 
 ![image](https://user-images.githubusercontent.com/92558174/147180713-d02659a5-5ebf-42cc-8252-80c1cb8f1728.png)
 
