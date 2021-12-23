@@ -155,7 +155,7 @@ df_val = df[df['year'] == cutoff]
 df_test = df[df['year'] > cutoff]
 ```
 
-### Creating the Feature and Target Array
+### Feature Matrix and Target Array
 
 ```
 X_train = df_train.drop(columns = [target, 'year'])
@@ -279,9 +279,9 @@ model_xgb_s.fit(X_train, y_train)
 
 
 ### Final Prediction
-![image](https://user-images.githubusercontent.com/92558174/147176045-9cee5f5e-2304-4757-b727-16ea466f0424.png) ![image](https://user-images.githubusercontent.com/92558174/147176199-b94a725b-2ba2-4900-96be-d69a946c70ec.png)
+![image](https://user-images.githubusercontent.com/92558174/147177924-f74402e5-da06-448d-84e6-b1b08dd7ac0b.png) ![image](https://user-images.githubusercontent.com/92558174/147176199-b94a725b-2ba2-4900-96be-d69a946c70ec.png)
 
-![image](https://user-images.githubusercontent.com/92558174/147176615-ccc756ce-644b-409b-b0be-22fd983bb7be.png) ![image](https://user-images.githubusercontent.com/92558174/147176443-a181952f-89e1-4ddd-b94b-c1ecebf5e3be.png)
+![image](https://user-images.githubusercontent.com/92558174/147178013-2e0960b7-1a08-43a6-9e63-d4955066f342.png) ![image](https://user-images.githubusercontent.com/92558174/147176443-a181952f-89e1-4ddd-b94b-c1ecebf5e3be.png)
 
 ### Permutation Importances for Final Model
 
