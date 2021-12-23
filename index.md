@@ -243,6 +243,11 @@ model_xgb_s = GridSearchCV(model_xgb,
 model_xgb_s.fit(X_train, y_train)
 ```
 
+##### Pre-tuning:
+![image](https://user-images.githubusercontent.com/92558174/147194006-08c0f22f-c158-4bfb-8b41-2224c28e122c.png)
+
+##### Post-tuning:
+![image](https://user-images.githubusercontent.com/92558174/147180713-d02659a5-5ebf-42cc-8252-80c1cb8f1728.png)
 
 | Tuned Model         | Accuracy  | ROC AUC  | Precision | Recall | F1 Score |
 |:--------------------|:----------|----------|:----------|:-------|:---------|
@@ -250,13 +255,7 @@ model_xgb_s.fit(X_train, y_train)
 | Adaptive Boost      | 99.204244 | 0.981694 | 0.70      | 0.47   | **0.56** |
 | XGBoost             | 99.005305 | 0.993492 | 0.53      | 0.71   | **0.61** |
 
-##### Pre-tuning:
-![image](https://user-images.githubusercontent.com/92558174/147194006-08c0f22f-c158-4bfb-8b41-2224c28e122c.png)
-
-##### Post-tuning:
-![image](https://user-images.githubusercontent.com/92558174/147180713-d02659a5-5ebf-42cc-8252-80c1cb8f1728.png)
-
-From the metrics above, we can see that XGBoost classifier benefitted the most from tuning. Both precision and recall increased substantially, giving an F1 score on pace with the logsitic regression model!
+From the above plots, we can see that XGBoost classifier benefitted the most from tuning. Both precision and recall increased substantially, giving an F1 score on pace with the logsitic regression model!
 
 ## Final Prediction
 For my final model, I decided to go with the logistic regression. Below are the prediction results of the 2021 draft in a confusion matrix format as well as the classification report. Surprisingly, the linear model did much worse on the test set than on the validation set! 
@@ -265,29 +264,26 @@ For my final model, I decided to go with the logistic regression. Below are the 
 |![image](https://user-images.githubusercontent.com/92558174/147177924-f74402e5-da06-448d-84e6-b1b08dd7ac0b.png) | ![image](https://user-images.githubusercontent.com/92558174/147183927-ca56f4a2-7d88-454f-8a3b-50039b2248f4.png)|
 
 
-Seeing that the logistic regression model did not perfrom all that well on the test set, I decided to test the updated XGBoost as well. Here are the results:
+Seeing that the logistic regression model did not perfrom all that well on the test set, I decided to cheat and run the test set on the updated XGBoost as well. Here are the results:
 
 |![image](https://user-images.githubusercontent.com/92558174/147178013-2e0960b7-1a08-43a6-9e63-d4955066f342.png) | ![image](https://user-images.githubusercontent.com/92558174/147176443-a181952f-89e1-4ddd-b94b-c1ecebf5e3be.png)|
 
+Looks like I chose the **wrong** model!
+
 ### Important Features
-Permutation importances for the tuned LR model:
+
 ![image](https://user-images.githubusercontent.com/92558174/147185241-007b2268-8574-439d-ac39-39edd4199617.png)
 
-Permutation importances for the tuned XGBoost model:
 ![image](https://user-images.githubusercontent.com/92558174/147177421-a5b66a2a-8cd4-4337-9756-b9c2c079b40c.png)
 
-To my surprise, the two models "cared" about very different features!
-
 ## Concluding Thoughts
-My approach is very basic. There are other factors beyonds stats that go into draft decisions. One such factor is the kind of player a team is looking to add to its roster in any given year. Another may be personality.
+Over the past decade, the NBA and college basketball programs have increasingly embraced the power of data analytics. In fact as of 2020, almost every professional team has a department in their front office dedicated specifically to analyzing data. With this project, my goal was to explore this territory at the intersection of sports and data science by building a basic model to predict draft outcomes of college players using on-court stats. However, I'm sure stats are far from the only factors that that go into draft decisions. One main factor that is not accounted for is the kind of player a team is looking to add to its roster in any given year. Another may be personality. Though ultimately, skill and ability on the court are king. And stats are the best way to capture that.
 
-Some potential improvements could be made by:
+Looking forward, some potential improvements to building a better model could be:
 * finding the right combination of stats to train on
 * handling 0s and 1s for percentage features better or dropping those observations altogether
 * adding a feature to distinguish draft-eligible players 
 * adding a feature to distinguish players who have actually declared for the draft
 * adding or calculating a composite score feature
 
-An alternative methodology of oversampling 
-
-As a future  would also be interesting to see how well a basic linear or tree model could predict not only which players will be drafted, but the order in which they are chosen.
+A methodology of undersampling or oversampling could also used on the dataset to mitigate the effects of the extreme class imbalance on the modeling process. It would also be interesting to build a regression model to predict not only which players will be drafted but the order in which they are chosen!
