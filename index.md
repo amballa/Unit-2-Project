@@ -67,7 +67,7 @@ The [College Basketball + NBA Advanced Stats](https://www.kaggle.com/adityak2003
 
 ## Preparation for Model Building
 ### Cleaning and Wrangling
-Although the dataset was well organized and contained relatively few null values, it required some basic wrangling to reduce the size and deal with missing data and outlier observations. I decided on retaining data from the 2015-2016 season through the 2020-2021 season and removed the columns of all the stats I was not interested in. Given the cardinality of the _team_ feature (362), I decided to drop that column as well. To make things interesting, I also created an additional feature - _conf_mjr_ which rates the competitiveness (also called major) of each conference as high, mid, or low. For the target, I used the _pick_ feature to created a binary column representing draft status. The full wrangle function is included below for reference.
+Although the dataset was well organized and contained relatively few null values, it required some basic wrangling to reduce the size and deal with missing data and outlier observations. I decided on retaining data from the 2015-2016 season through the 2020-2021 season and removed the columns of all the stats I was not interested in. Given the cardinality of the _team_ feature (362), I decided to drop that column as well. To make things interesting, I also created the feature _conf_mjr_, which groups the conference a player plays in into either a high, mid, or low competition tier (also called major). My target _drafted_ is a binary variable derived the the _pick_ column signifying a player's draft status. To avoid data leakage, I dropped the _pick_ column after creating the target and verified that all the stats would be available following the conclusion of a college basketball season. The full wrangle function is included below for reference.
 
 ```
 def wrangle(filepath):
@@ -162,10 +162,13 @@ To establish a baseline, I calculated the relative frequency of the majority cla
 baseline_train_acc = y_train.value_counts(normalize=True).max()*100
 baseline_val_acc = y_val.value_counts(normalize=True).max()*100
 ```
-Unsurprsingly, predicting that zero players get drafted nets an accuracy score of 98.91 for the training set and 98.92 validation set. Even though accuracy will not be the primary metric of evaluation, it will be interesting to see how different model perform in this respect. 
+Unsurprsingly, predicting that zero players get drafted nets an accuracy score of 98.91% for the training set and 98.92% for the validation set. Even though accuracy will not be the primary metric of evaluation, it will be interesting to see how different model perform in this respect. Since the classes are so imbalanced and my focus is on classifications of the positive class, precision, recall, and F1 score will be 
+
+
 
 ## Classification Models
 ### Logistic Regression
+The first model
 
 ```
 model_log = make_pipeline(OneHotEncoder(use_cat_names = True),
@@ -178,6 +181,7 @@ model_log.fit(X_train, y_train)
 
 
 ### Tree Models
+I 
 ```
 model_ada = make_pipeline(OrdinalEncoder(),
                           AdaBoostClassifier(random_state=42)
