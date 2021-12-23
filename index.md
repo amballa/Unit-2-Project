@@ -274,11 +274,17 @@ model_xgb_s = GridSearchCV(model_xgb,
 model_xgb_s.fit(X_train, y_train)
 ```
 
-![image](https://user-images.githubusercontent.com/92558174/147172780-16c551d3-da13-4900-b065-19e668671a96.png)
-![image](https://user-images.githubusercontent.com/92558174/147172479-6c467e68-f1b0-4b9c-8354-aee9f33a9990.png)
+| Tuned Model         | Accuracy  | ROC AUC  | Precicion | Recall | F1 Score |
+|:--------------------|:----------|----------|:----------|:-------|:---------|
+| Logistic Regression | 99.358974 | 0.996393 | 0.83      | 0.51   | **0.63** |
+| Adaptive Boost      | 99.204244 | 0.981694 | 0.70      | 0.47   | **0.56** |
+| XGBoost             | 99.005305 | 0.993492 | 0.53      | 0.71   | **0.61** |
 
 
-### Final Prediction
+![image](https://user-images.githubusercontent.com/92558174/147180713-d02659a5-5ebf-42cc-8252-80c1cb8f1728.png)
+
+
+### Final Prediction for 2021 Draft
 ![image](https://user-images.githubusercontent.com/92558174/147177924-f74402e5-da06-448d-84e6-b1b08dd7ac0b.png) | ![image](https://user-images.githubusercontent.com/92558174/147178328-9ad4d39a-48a5-40cd-a8e8-6d3e427f80b9.png)
 
 ![image](https://user-images.githubusercontent.com/92558174/147178013-2e0960b7-1a08-43a6-9e63-d4955066f342.png) | ![image](https://user-images.githubusercontent.com/92558174/147176443-a181952f-89e1-4ddd-b94b-c1ecebf5e3be.png)
