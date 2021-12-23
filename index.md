@@ -170,8 +170,6 @@ The first model I ran was a linear model - logistic regression with default para
 
 ![image](https://user-images.githubusercontent.com/92558174/147285600-571af60f-6bc1-4087-b4cc-67d6f04f8871.png)
 
-....
-
 
 ### Tree-based Models
 I trained 5 tree-based classification models, also with default parameters, to see how they would handle the severe class imbalance: a basic decision tree, a bagging model (Random Forest), and 3 boosting models (Adaptive Boost, Gradient Boost, and Extreme Gradient Boost). The random forest model fared the worst with an meager F1 score of 0.19 - a combination of perfect precision and terrible recall scores. Despite having a validation accuracy below baseline, the decision tree did an overall better job (F1 of 0.40) and "took more chances" at predicting a positive draft status. The AdaBoostClassifier performed the best out of the lot with an F1 score of 0.60 and accuracy of 99.29%, well above baseline. The GradientBoostingClassifier and XGBoostClassifier perfomed similarly with respective F1 scores of 0.43 and 0.41.
@@ -179,14 +177,9 @@ I trained 5 tree-based classification models, also with default parameters, to s
 
 ### Initial Model Comparison
 
-Out of the 6 models, I decided to compare the logistic regression, AdaBoost, and XGboost classifiers as candidates for the final model. One method of comparing binary classifiers is to plot their respective ROC (receiver operating characteristic) curves. Even though the curves shown below are extremely tight given the uneven distribution of my target, any marginal differences would be informative. The logistic regression model had the highest area under its curve (0.996) which was unsurprising given that it had the highest accuracy and F1 score. The XGBoost AUC came out to 0.993 while the AdaBoost classifier scored the lowest at 0.990. Below
+Out of the 6 models, I decided to compare the logistic regression, AdaBoost, and XGboost classifiers as candidates for the final model. One method of comparing binary classifiers is to plot their respective ROC (receiver operating characteristic) curves. Even though the curves shown below are extremely tight given the uneven distribution of my target, any marginal differences would be informative. The logistic regression model had the highest area under its curve (0.996) which was unsurprising given that it had the highest accuracy and F1 score. The XGBoost AUC came out to 0.993 while the AdaBoost classifier scored the lowest at 0.990.
 
 ![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png)
-
-
-
-![image](https://user-images.githubusercontent.com/92558174/147194006-08c0f22f-c158-4bfb-8b41-2224c28e122c.png)
-
 
 
 ### Hyperparameter Tuning and Final Model Comparison
@@ -259,10 +252,13 @@ model_xgb_s.fit(X_train, y_train)
 | Adaptive Boost      | 99.204244 | 0.981694 | 0.70      | 0.47   | **0.56** |
 | XGBoost             | 99.005305 | 0.993492 | 0.53      | 0.71   | **0.61** |
 
-From the metrics above, we can see that XGBoost classifier benefitted the most from tuning. 
+Pre-tuning:
+![image](https://user-images.githubusercontent.com/92558174/147194006-08c0f22f-c158-4bfb-8b41-2224c28e122c.png)
 
+Post-tuning:
 ![image](https://user-images.githubusercontent.com/92558174/147180713-d02659a5-5ebf-42cc-8252-80c1cb8f1728.png)
 
+From the metrics above, we can see that XGBoost classifier benefitted the most from tuning. 
 
 ## Final Prediction
 
