@@ -179,9 +179,10 @@ I trained 5 tree-based classification models, also with default parameters, to s
 
 ### Initial Model Comparison
 
-Out of the 6 models, I decided to compare the logistic regression, AdaBoost, and XGboost classifiers as candidates for the final model. Even though the ROC curves shown below are extremely tight, any marginal difference in the AUC (area under curve) 
+Out of the 6 models, I decided to compare the logistic regression, AdaBoost, and XGboost classifiers as candidates for the final model. One method of comparing binary classifiers is to plot their respective ROC (receiver operating characteristic) curves. Even though the curves shown below are extremely tight given the uneven distribution of my target, any marginal differences would be informative. The logistic regression model had the highest area under its curve (0.996) which was unsurprising given that it had the highest accuracy and F1 score. The XGBoost AUC came out to 0.993 while the AdaBoost classifier scored the lowest at 0.990. Below
 
-|![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png) | ![image](https://user-images.githubusercontent.com/92558174/147284674-1f1f56e0-9f2b-4f4e-b5bf-1887edeab209.png)|
+![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png)
+
 
 
 ![image](https://user-images.githubusercontent.com/92558174/147194006-08c0f22f-c158-4bfb-8b41-2224c28e122c.png)
@@ -213,13 +214,14 @@ model_log_s.fit(X_train, y_train)
 
 ```
 model_ada = make_pipeline(OrdinalEncoder(),
-                          AdaBoostClassifier(base_estimator=DecisionTreeClassifier(), random_state=42)
+                          AdaBoostClassifier(
+                            base_estimator=DecisionTreeClassifier(),
+                            random_state=42)
                           )
 param_grid = {'adaboostclassifier__base_estimator__max_depth': [1,2],
               'adaboostclassifier__learning_rate': [0.1, 0.5, 1],
               'adaboostclassifier__n_estimators': [50,100,150]
               }
-
 model_ada_s = GridSearchCV(model_ada,
                            param_grid=param_grid,
                            n_jobs=-1,
