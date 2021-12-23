@@ -278,6 +278,7 @@ model_xgb_s.fit(X_train, y_train)
 
 
 ### Final Prediction for 2021 Draft
+
 |![image](https://user-images.githubusercontent.com/92558174/147177924-f74402e5-da06-448d-84e6-b1b08dd7ac0b.png) | ![image](https://user-images.githubusercontent.com/92558174/147183927-ca56f4a2-7d88-454f-8a3b-50039b2248f4.png)|
 
 
@@ -290,7 +291,7 @@ Seeing that the logistic regression model did not perfrom all that well on the t
 ![image](https://user-images.githubusercontent.com/92558174/147177421-a5b66a2a-8cd4-4337-9756-b9c2c079b40c.png)
 
 
-### Concluding Thoughts and Analysis Limitations
+### Concluding Thoughts
 My approach is very basic.
 Some potential improvements:
 * finding the right combination of player stats to include
