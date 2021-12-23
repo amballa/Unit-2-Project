@@ -133,10 +133,10 @@ def wrangle(filepath):
 ```
 
 ### Splitting the Data
-I decided to split my data into the following 3 subsets:
-1. training set containing stats from 4 seasons (2016-2019)
-2. validation set containing stats from 2020 season
-3. test set containing stats from 2021 season
+I decided to a time-based split and separate the data into the following 3 subsets:
+1. Training set containing stats from 4 seasons (2016-2019)
+2. Validation set containing stats from the 2020 season
+3. Test set containing stats from the 2021 season
 
 ```
 cutoff = 2020
@@ -162,7 +162,7 @@ To establish a baseline, I calculated the relative frequency of the majority cla
 baseline_train_acc = y_train.value_counts(normalize=True).max()*100
 baseline_val_acc = y_val.value_counts(normalize=True).max()*100
 ```
-Unsurprsingly, predicting that zero players get drafted nets an accuracy score of 98.91% for the training set and 98.92% for the validation set. Even though accuracy will not be the primary metric of evaluation, it will be interesting to see how different model perform in this respect. Since the classes are so imbalanced and my focus is on classifications of the positive class, precision, recall, and F1 score will be 
+Unsurprsingly, predicting that zero players get drafted nets an accuracy score of 98.91% for the training set and 98.92% for the validation set. Even though accuracy will not be the primary metric of evaluation, it will be interesting to see how different model perform in this respect. Since the classes are so imbalanced and my focus is on classifications of the positive class, precision & recall & F1 score will be more useful.
 
 
 
@@ -180,8 +180,7 @@ model_log.fit(X_train, y_train)
 ....
 
 
-### Tree Models
-I 
+### Tree-based Models
 ```
 model_ada = make_pipeline(OrdinalEncoder(),
                           AdaBoostClassifier(random_state=42)
@@ -194,12 +193,12 @@ model_xgb = make_pipeline(OrdinalEncoder(),
                           )
 model_xgb.fit(X_train, y_train);
 ```
+I trained 5 tree-based models, also with default parameters to see how they would perfrom with the severe class imbalance. The decision tree
 
-....
 
 
 ### Initial Model Comparison
-(whatever)
+To decide which model to go with, ...
 
 ![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png)
 
