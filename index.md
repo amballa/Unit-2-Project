@@ -67,7 +67,7 @@ The [College Basketball + NBA Advanced Stats](https://www.kaggle.com/adityak2003
 
 ## Preparation for Model Building
 ### Cleaning and Wrangling
-Although the dataset was well organized and contained relatively few null values, it required some basic wrangling to reduce the size and deal with missing data and outlier observations. I decided on retaining data from the 2015-2016 season through the 2020-2021 season and removed the columns of all the stats I was not interested in. Given the cardinality of the _team_ feature (362), I decided to drop that column as well. To make things interesting, I also created the feature _conf_mjr_, which groups the conference a player plays in into either a high, mid, or low competition tier (also called major). My target _drafted_ is a binary variable derived the the _pick_ column signifying a player's draft status. To avoid data leakage, I dropped the _pick_ column after creating the target and verified that all the stats would be available following the conclusion of a college basketball season. The full wrangle function is included below for reference.
+Although the dataset was well organized and not sparse, it required some basic wrangling to reduce the size and deal with missing data and outlier observations. I decided on retaining data from the 2015-2016 season through the 2020-2021 season and removed the columns of all the stats I was not interested in. Given the cardinality of the _team_ feature (362), I decided to drop that column as well. To make things interesting, I also created the feature _conf_mjr_, which groups the conference a player plays in into either a high, mid, or low competition tier (also called major). My target _drafted_ is a binary variable derived the the _pick_ column signifying a player's draft status. To avoid data leakage, I dropped the _pick_ column after creating the target and verified that all the stats would be available following the conclusion of a college basketball season. The full wrangle function is included below for reference.
 
 ```
 def wrangle(filepath):
@@ -133,7 +133,7 @@ def wrangle(filepath):
 ```
 
 ### Splitting the Data
-I decided to a time-based split and separate the data into the following 3 subsets:
+I decided to do a time-based split and separate the data into the following 3 subsets:
 1. Training set containing stats from 4 seasons (2016-2019)
 2. Validation set containing stats from the 2020 season
 3. Test set containing stats from the 2021 season
@@ -143,9 +143,7 @@ cutoff = 2020
 df_train = df[df['year'] < cutoff]
 df_val = df[df['year'] == cutoff]
 df_test = df[df['year'] > cutoff]
-```
-Creating the feature matrices and target vectors:
-```
+
 X_train = df_train.drop(columns = [target, 'year'])
 y_train = df_train[target]
 
@@ -168,41 +166,24 @@ Unsurprsingly, predicting that zero players get drafted nets an accuracy score o
 
 ## Classification Models
 ### Logistic Regression
-The first model
+The first model I ran was a linear model - Logistic Regression with default parameters. Right off the bat, the bare-bone model had a validation accuracy of 99.40%, a whopping 0.48% above baseline. And with a precision of 0.84 and recall of 0.55 combining to give an F1 score of 0.67, these metrics were the ones to beat.
 
-```
-model_log = make_pipeline(OneHotEncoder(use_cat_names = True),
-                          StandardScaler(),
-                          LogisticRegression(n_jobs=-1, random_state=42)
-                          )
-model_log.fit(X_train, y_train)
-```
+![image](https://user-images.githubusercontent.com/92558174/147285600-571af60f-6bc1-4087-b4cc-67d6f04f8871.png)
+
 ....
 
 
 ### Tree-based Models
-```
-model_ada = make_pipeline(OrdinalEncoder(),
-                          AdaBoostClassifier(random_state=42)
-                          )
-model_ada.fit(X_train, y_train);
-
-
-model_xgb = make_pipeline(OrdinalEncoder(),
-                          XGBClassifier(random_state=41, n_jobs=-1)
-                          )
-model_xgb.fit(X_train, y_train);
-```
-I trained 5 tree-based models (with default parameters) to see how they would handle the severe class imbalance. The random forest model fared the worst with an meager F1 score of 0.19 - a combination of perfect precision but terrible recall . Despite having a validation accuracy below baseline, the decision tree model did a better job (F1 = 0.40) and "took more chances" at predicting a positive draft status.
-
+I trained 5 tree-based classification models (with default parameters) to see how they would handle the severe class imbalance: a basic decision tree, a bagging model (Random Forest), and 3 boosting models (Adaptive Boost, Gradient Boost, and Extreme Gradient Boost). The random forest model fared the worst with an meager F1 score of 0.19 - a combination of perfect precision and terrible recall scores. Despite having a validation accuracy below baseline, the decision tree did an overall better job (F1 of 0.40) and "took more chances" at predicting a positive draft status. The AdaBoostClassifier performed the best out of the lot with an F1 score of 0.60 and accuracy of 99.29%, well above baseline. The GradientBoostingClassifier and XGBoostClassifier perfomed similarly with respective F1 scores of 0.43 and 0.41.
 
 
 ### Initial Model Comparison
-To decide which model to go with, ...
 
-Below are 
+Out of the 6 models, I decided to compare the Logistic Regression, AdaBoost, and XGboost classifiers as candidates for the final model. 
 
 ![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png)
+![image](https://user-images.githubusercontent.com/92558174/147284674-1f1f56e0-9f2b-4f4e-b5bf-1887edeab209.png)
+
 
 ![image](https://user-images.githubusercontent.com/92558174/147194006-08c0f22f-c158-4bfb-8b41-2224c28e122c.png)
 
