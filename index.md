@@ -2,14 +2,13 @@
 _NBA commissioner Adam Silver congratulating point guard Ja Morant, drafted 2nd overall in 2019_
 
 ## Background
-The NBA is amongst the most popular and premier sports leagues in the world. Attracting millions of viewers and generating billions in annual revenue, the league truly represents the best of the best in the world of basketball. But the route to the NBA is difficult to say the least. Before getting a chance to play on the biggest stage in basketball, prospective players must prove themselves on a smaller stage - whether in the American minor league, internationally, or most often on the college court. Every year, 60 individuals are chosen to join the ranks of the NBA in the annual draft. Around 50 or so are drafted directly from college. This selection comes from a pool of over 4,500 Division 1 players across 350 teams. That's a rate of 1.1%! Who are these select few and why are they chosen?
+The NBA is amongst the most popular and premier sports leagues in the world. Attracting millions of viewers and generating billions in annual revenue, the league truly represents the best of the best in the world of basketball. But the route to the NBA is difficult to say the least. Before getting a chance to play on the biggest stage in basketball, prospective players must prove themselves on smaller stages - whether in the American minor league, internationally, or most often on college courts. Every year, 60 individuals are chosen to join the ranks of the pros in the annual NBA draft. Around 50 or so are drafted directly from college. This selection comes from a pool of over 4,500 Division 1 players across 350 teams. That's a rate of 1.1%! Who are these select few and why are they chosen?
 
-Using on-court stats, my goal is to predict which college players will be drafted by NBA teams in a given year and find the stats that best predict draft success.
-
+Using on-court stats, my goal is to predict which NCAA players will be drafted by NBA teams in a given year and find the stats that best predict draft success.
 
 ## Dataset
 
-The [College Basketball + NBA Advanced Stats](https://www.kaggle.com/adityak2003/college-basketball-players-20092021) dataset on Kaggle contains stats for Division 1 basketball players from 2009 to 2021. It contains over 60,000 rows representing the seasons of over 25,000 players. Of the 65 columns in the dataset, I chose to make use of 25 and engineered one additional feature: conf_mjr which rates the competitiveness of the conference an indvidual plays in as either high, mid, or low. The full set of features I will be using is listed below.
+The [College Basketball + NBA Advanced Stats](https://www.kaggle.com/adityak2003/college-basketball-players-20092021) dataset on Kaggle contains stats for NCAA Division 1 basketball players from 2009 to 2021. It contains over 60,000 rows representing the seasons of over 25,000 players. Of the 65 columns in the dataset, I chose to make use of 25 and engineered one additional feature: conf_mjr.
 
 ##### Categorical:
 > **conf**: Conference
@@ -70,7 +69,7 @@ The [College Basketball + NBA Advanced Stats](https://www.kaggle.com/adityak2003
 
 ## Preparation for Model Building
 ### Cleaning and Wrangling
-Here is my wrangle function:
+Although the dataset was well organized and contained relatively few null values, it required some basic wrangling to reduce the size and deal with missing data and outlier observations. I decided on retaining data from the 2015-2016 season through the 2020-2021 season and removed the columns of all the stats I was not interested in. Given the cardinality of the _team_ feature (362), I decided to drop that column as well. To make things interesting, I also created an additional feature - _conf_mjr_ which rates the competitiveness of the conference an indvidual plays in as either high, mid, or low. For the target, I used the _pick_ feature to created a binary column representing draft status. The full wrangle function is included below for reference.
 
 ```
 def wrangle(filepath):
@@ -135,10 +134,6 @@ def wrangle(filepath):
   return df
 ```
 
-![image](https://user-images.githubusercontent.com/92558174/147181512-58fe80ce-be94-4c13-9357-6405275f05a2.png)
-
-
-
 ### Train-Validation-Test Split
 
 
@@ -179,7 +174,7 @@ model_log = make_pipeline(OneHotEncoder(use_cat_names = True),
                           )
 model_log.fit(X_train, y_train)
 ```
-(some graphs maybe)
+....
 
 
 ### Tree Models
@@ -195,9 +190,8 @@ model_xgb = make_pipeline(OrdinalEncoder(),
                           )
 model_xgb.fit(X_train, y_train);
 ```
-(some image or graph maybe)
 
-blah blah blah
+....
 
 
 ### Initial Model Comparison
