@@ -183,7 +183,7 @@ Out of the 6 models, I decided to compare the logistic regression, AdaBoost, and
 
 
 ### Hyperparameter Tuning and Final Model Comparison
-To
+Utilizing a 5-fold cross validation, I used grid-search to find the optimal set of hyperparameters for the 3 models in the specified search spaces. The metric used to score the different iterations is the F1 score.
 ```
 model_log = make_pipeline(OneHotEncoder(use_cat_names = True),
                           StandardScaler(),
@@ -204,7 +204,6 @@ model_log_s = GridSearchCV(model_log,
 model_log_s.fit(X_train, y_train)
 ```
 
-
 ```
 model_ada = make_pipeline(OrdinalEncoder(),
                           AdaBoostClassifier(
@@ -224,7 +223,6 @@ model_ada_s = GridSearchCV(model_ada,
                             )
 model_ada_s.fit(X_train, y_train)
 ```
-
 
 ```
 model_xgb = make_pipeline(OrdinalEncoder(),
@@ -252,16 +250,18 @@ model_xgb_s.fit(X_train, y_train)
 | Adaptive Boost      | 99.204244 | 0.981694 | 0.70      | 0.47   | **0.56** |
 | XGBoost             | 99.005305 | 0.993492 | 0.53      | 0.71   | **0.61** |
 
-Pre-tuning:
+##### Pre-tuning:
 ![image](https://user-images.githubusercontent.com/92558174/147194006-08c0f22f-c158-4bfb-8b41-2224c28e122c.png)
 
-Post-tuning:
+##### Post-tuning:
 ![image](https://user-images.githubusercontent.com/92558174/147180713-d02659a5-5ebf-42cc-8252-80c1cb8f1728.png)
 
-From the metrics above, we can see that XGBoost classifier benefitted the most from tuning. Both precision and recall increased substantially, giving an F1 score on pace with the logsitic regression model! The AdaBoost classifier 
+From the metrics above, we can see that XGBoost classifier benefitted the most from tuning. Both precision and recall increased substantially, giving an F1 score on pace with the logsitic regression model!
 
 ## Final Prediction
-For my final model, I decided to go with the logistic regression. Below are the prediction results of the 2021 draft in a confusion matrix format.
+For my final model, I decided to go with the logistic regression. Below are the prediction results of the 2021 draft in a confusion matrix format as well as the classification report. Surprisingly, the linear model did much worse on the test set than on the validation set! 
+
+
 |![image](https://user-images.githubusercontent.com/92558174/147177924-f74402e5-da06-448d-84e6-b1b08dd7ac0b.png) | ![image](https://user-images.githubusercontent.com/92558174/147183927-ca56f4a2-7d88-454f-8a3b-50039b2248f4.png)|
 
 
@@ -282,11 +282,12 @@ To my surprise, the two models "cared" about very different features!
 My approach is very basic. There are other factors beyonds stats that go into draft decisions. One such factor is the kind of player a team is looking to add to its roster in any given year. Another may be personality.
 
 Some potential improvements could be made by:
-* finding the right combination of stats
+* finding the right combination of stats to train on
 * handling 0s and 1s for percentage features better or dropping those observations altogether
 * adding a feature to distinguish draft-eligible players 
 * adding a feature to distinguish players who have actually declared for the draft
 * adding or calculating a composite score feature
-* ulitizing an undersamping or oversampling technique like SMOTE
 
-It would also be interesting to see how well a more complex model could predict not only which players will drafted, but the order in which they are chosen.
+An alternative methodology of oversampling 
+
+As a future  would also be interesting to see how well a basic linear or tree model could predict not only which players will be drafted, but the order in which they are chosen.
