@@ -14,9 +14,9 @@ Using the performance statistics of college basketball players, my goal is to pr
 Of the 65 columns in the dataset, I chose to make use of 25 and engineered one additional feature.
 
 																					
-> **conf**:
+> **conf**: Conference
 > 
-> **conf_mjr**:
+> **conf_mjr**: Conference tier
 > 
 > **pos**: Position
 > 
@@ -160,8 +160,10 @@ df_test = df[df['year'] > cutoff]
 ```
 X_train = df_train.drop(columns = [target, 'year'])
 y_train = df_train[target]
+
 X_val = df_val.drop(columns = [target, 'year'])
 y_val = df_val[target]
+
 X_test = df_test.drop(columns = [target, 'year'])
 y_test = df_test[target]
 ```
@@ -193,10 +195,10 @@ model_ada = make_pipeline(OrdinalEncoder(),
                           )
 model_ada.fit(X_train, y_train);
 
+
 model_xgb = make_pipeline(OrdinalEncoder(),
                           XGBClassifier(random_state=41, n_jobs=-1)
                           )
-
 model_xgb.fit(X_train, y_train);
 ```
 (some image or graph maybe)
@@ -209,7 +211,7 @@ blah blah blah
 
 ![image](https://user-images.githubusercontent.com/92558174/147169110-851030dd-5c67-475d-9338-12fd9ec18d47.png)
 
-![image](https://user-images.githubusercontent.com/92558174/147169400-d2032ecb-51a7-437c-b49f-755fd802a635.png)
+![image](https://user-images.githubusercontent.com/92558174/147176928-28e82f95-4246-43c5-9ac7-a0cbc4870505.png)
 
 
 ### Hyperparameter Tuning and Final Model Comparison
@@ -277,7 +279,13 @@ model_xgb_s.fit(X_train, y_train)
 
 
 ### Final Prediction
-![alt-text-1](image1.png "title-1") ![alt-text-2](image2.png "title-2")
+![image](https://user-images.githubusercontent.com/92558174/147176045-9cee5f5e-2304-4757-b727-16ea466f0424.png) ![image](https://user-images.githubusercontent.com/92558174/147176199-b94a725b-2ba2-4900-96be-d69a946c70ec.png)
+
+![image](https://user-images.githubusercontent.com/92558174/147176615-ccc756ce-644b-409b-b0be-22fd983bb7be.png) ![image](https://user-images.githubusercontent.com/92558174/147176443-a181952f-89e1-4ddd-b94b-c1ecebf5e3be.png)
+
+### Permutation Importances for Final Model
+
+![image](https://user-images.githubusercontent.com/92558174/147177421-a5b66a2a-8cd4-4337-9756-b9c2c079b40c.png)
 
 
 ### Concluding Thoughts and Analysis Limitations
