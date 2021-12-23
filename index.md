@@ -279,9 +279,9 @@ model_xgb_s.fit(X_train, y_train)
 
 
 ### Final Prediction
-![image](https://user-images.githubusercontent.com/92558174/147177924-f74402e5-da06-448d-84e6-b1b08dd7ac0b.png) ![image](https://user-images.githubusercontent.com/92558174/147178328-9ad4d39a-48a5-40cd-a8e8-6d3e427f80b9.png)
+![image](https://user-images.githubusercontent.com/92558174/147177924-f74402e5-da06-448d-84e6-b1b08dd7ac0b.png) | ![image](https://user-images.githubusercontent.com/92558174/147178328-9ad4d39a-48a5-40cd-a8e8-6d3e427f80b9.png)
 
-![image](https://user-images.githubusercontent.com/92558174/147178013-2e0960b7-1a08-43a6-9e63-d4955066f342.png) ![image](https://user-images.githubusercontent.com/92558174/147176443-a181952f-89e1-4ddd-b94b-c1ecebf5e3be.png)
+![image](https://user-images.githubusercontent.com/92558174/147178013-2e0960b7-1a08-43a6-9e63-d4955066f342.png) | ![image](https://user-images.githubusercontent.com/92558174/147176443-a181952f-89e1-4ddd-b94b-c1ecebf5e3be.png)
 
 ### Permutation Importances for Final Model
 
